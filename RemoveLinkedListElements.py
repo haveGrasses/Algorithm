@@ -53,7 +53,4 @@ class Solution3:
 		if head is None:
 			return head
 		head.next = self.removeElements(head.next, val)  
-		if head.val == val:
-			return head.next
-		else:
-			return head
+		return head.next if head.val == val else head
