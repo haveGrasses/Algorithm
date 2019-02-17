@@ -6,6 +6,7 @@
 
 
 class Solution:
+	""" iteration method"""
     def removeElements(self, head: 'ListNode', val: 'int') -> 'ListNode':
         
         while (head != None) and (head.val == val):  # when head.val equals value to be removed, move head afterwards
@@ -43,3 +44,17 @@ class Solution:
 			else:
 				prev = prev.next
 		return dummyHead.next  # return real head
+
+
+class Solution3:
+	"""use recursion"""
+	def removeElements(self, head: 'ListNode', val: 'int') -> 'ListNode':
+		# basic solution
+		if head is None:
+			return head
+		res = self.removeElements(head.next, val)  
+		if head.val == val:
+			return res
+		else:
+			head.next = res
+			return head
