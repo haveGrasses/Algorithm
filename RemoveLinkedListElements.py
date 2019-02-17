@@ -8,18 +8,15 @@ class Solution:
     def removeElements(self, head: 'ListNode', val: 'int') -> 'ListNode':
         
         while (head != None) and (head.val == val):
-            delNode = head
             head = head.next
-            delNode.next = None
+            
         if head is None:
             return head
         
         prev = head  # we can assure that prev.val ！= val after above operations
         while prev.next:
             if prev.next.val == val:
-                delNode = prev.next
-                prev.next = delNode.next
-                delNode.next = None
+                prev.next = prev.next.next
             else:
                 prev = prev.next
         return head
