@@ -46,6 +46,7 @@ class Solution2(object):
         for i, v in freq.items():
             bucket[v-1].append(i)
         # 对bucket的改进：索引是出现次数-1，下面的循环中就不用再对是否为空进行判断了
+        # 用索引来表示次数，实际上省掉了需要对次数进行排序这一步骤，索引本身是有序的
 
         # find top k
         ret = []
@@ -54,7 +55,6 @@ class Solution2(object):
             if len(ret) >= k:
                 return ret[:k]
         return ret
-
 
 # need update: Solution3, use heap rather than bucket to find topk
 
