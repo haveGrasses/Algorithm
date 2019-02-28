@@ -16,5 +16,18 @@ class Solution:
     def subsets(self, nums):
         return self.subset(nums, [])
 
+
 s = Solution()
 print(s.subsets([4, 1, 2, 3, 2]))
+
+
+class Solution2:
+    """ 更容易理解的iteration方法 
+    每for一次res的结果会变化一次，添加了新的元素
+    因此下一侧的添加元素会再上一次结果的基础上加
+    """
+    def subsets(self, nums):
+        res = [[]]
+        for num in nums:  
+            res += [r+[num] for r in res]  # 用列表推导式会快一些，改成循环memeroy limit error
+        return res
