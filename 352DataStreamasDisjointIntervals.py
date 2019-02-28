@@ -21,7 +21,7 @@ class SummaryRanges:
             heapq.heappush(self.intervals, (val, Interval(val, val)))
 
 
-    def getIntervals(self) -> List[Interval]:
+    def getIntervals(self):
         mergedIntervals = []
         
         while self.intervals:
