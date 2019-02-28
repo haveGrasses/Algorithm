@@ -28,6 +28,6 @@ class Solution2:
     """
     def subsets(self, nums):
         res = [[]]
-        for num in nums:  
+        for num in nums:  # another version：for num in sorted(nums)有什么用
             res += [r+[num] for r in res]  # 用列表推导式会快一些，改成循环memeroy limit error
         return res
