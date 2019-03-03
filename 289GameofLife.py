@@ -16,12 +16,13 @@ class Solution(object):
         :rtype: None Do not return anything, modify board in-place instead.
         """
         m, n = len(board), len(board[0])
+        # calculate next state for every i, j pair
         for i in range(m):
             for j in range(n):
                 # find lives in 3*3 boxes(or less consider border) centered on i, j
                 lives = 0  # initiate
 
-                # find neighbor box
+                # find neighbor box: use max and min in range to handle edge cases
                 for x in range(max(0, i-1), min(i+2, m)):  # row 
                     for y in range(max(0, j-1), min(j+2, n)):  # col
                         lives += (board[x][y] & 1)  # lives += board[i][j]
@@ -32,12 +33,12 @@ class Solution(object):
                 # the cell is to be still alive only when num of neighbors must be 3
                 # ?? why use 'lives - board[i][j]' rather than 'lives - board[i][j] & 1' ??? 
                 # fixed: use lives - (board[i][j]&1), brackets required
-                if lives == 3 or lives - (board[i][j]&1) == 3:
+                if lives == 3 or lives - (board[i][j] & 1) == 3:
                     board[i][j] |= 0b10  # set next state equal to 1
 
         for i in range(m):
             for j in range(n):
-                # perform actual change
+                # perform actual change and set higher position to 0
                 board[i][j] >>= 1
 
 
