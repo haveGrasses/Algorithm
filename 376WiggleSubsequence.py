@@ -25,6 +25,24 @@ class Solution(object):
         print(nums)
         return result
 
- 
+
+class Solution2(object):
+    """ beats 100%, use dp"""
+    def wiggleMaxLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        up = down = 1
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i-1]:
+                up = down + 1  # still do not understand why up just equals previous down plus 1
+            elif nums[i] < nums[i-1]:
+                down = up + 1  # same confusion
+        return max(up, down)    
+    
+
 s = Solution()
 print(s.wiggleMaxLength([2,1,4,5,6,3,3,4,8,4]))
