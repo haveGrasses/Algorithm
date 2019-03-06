@@ -45,4 +45,4 @@ class Solution2(object):
     
 
 s = Solution()
-print(s.wiggleMaxLength([2,1,4,5,6,3,3,4,8,4]))
+print(s.wiggleMaxLength([2, 1, 4, 5, 6, 3, 3, 4, 8, 4]))
