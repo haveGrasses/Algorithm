@@ -30,7 +30,7 @@ class MedianFinder(object):
         # samll, large = self.heaps
         if len(self.large) > len(self.samll):
             return self.large[0]
-        return (self.large[0] - self.samll[0]) / 2  # pay attention to the minus, nums in samll is kept negative
+        return (self.large[0] - self.samll[0]) / 2  # pay attention to the minus, nums in samll is kept negative from its original values
 
  
 class MedianFinder(object):
