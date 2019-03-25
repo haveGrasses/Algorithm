@@ -31,3 +31,38 @@ class MedianFinder(object):
         if len(self.large) > len(self.samll):
             return self.large[0]
         return (self.large[0] - self.samll[0]) / 2  # pay attention to the minus, nums in samll is kept negative
+
+ 
+class MedianFinder(object):
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.heaps = [], []  
+
+    def addNum(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        samll, large = self.heaps  # when samll and large change, heaps changes accordingly, because list is changable?
+        heappush(samll, -heappushpop(large, num))
+        if len(large) < len(samll):
+            heappush(large, -heappop(samll))
+
+    def findMedian(self):
+        """
+        :rtype: float
+        """
+        samll, large = self.heaps
+        if len(large) > len(samll):
+            return large[0]
+        return (large[0] - samll[0]) / 2
+        
+
+
+# Your MedianFinder object will be instantiated and called as such:
+# obj = MedianFinder()
+# obj.addNum(num)
+# param_2 = obj.findMedian()
