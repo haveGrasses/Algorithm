@@ -37,10 +37,10 @@ class Solution(object):
         if not phead or not phead.next:
             return 
         slow, fast = phead.next, phead.next.next
-        if not slow or not fast:  # added
+        if not slow or not fast:  
             return
         while slow != fast:
-            if not fast or not fast.next:
+            if not fast or not fast.next:  # added
                 return 
             slow = slow.next
             fast = fast.next.next
