@@ -10,7 +10,7 @@ class Solution:
         slow, fast = phead.next, phead.next.next
         if not slow or not fast:
             return
-        while slow != fast:
+        while slow != fast:  # AC in nc but contains bugs when fast is null and fast.next will throw error
             slow = slow.next
             fast = fast.next.next
         # fast meet slow
