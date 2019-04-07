@@ -1,7 +1,7 @@
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # save element in nums1 into a map, the key is the element, value is times
-        # then traverse elements in nums2, if it in map, save it to res, 
+        # then traverse elements in nums2, if it in map, record the intersections, 
         # decreasing times in map accordingly, this is very important.
         
         nums1_set = {}
@@ -24,7 +24,7 @@ class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         """ two pointer solution 
         when nums1 and nums2 are very large, it is not impossible to make a set of them,
-        so we use two pointer to compare elements in them and append the repeated one to res
+        so we use two pointer to compare elements in them and record the intersections
         """
         # sort
         nums1 = sorted(nums1)
