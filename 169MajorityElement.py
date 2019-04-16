@@ -31,12 +31,33 @@ class Solution(object):
             return major
         else:
             return 0
+        
+    def majorityElement2(self, nums):
+        """ using sort, a kind of tricky method """
+        # nums.sort()
+        # return nums[len(nums) // 2]
+        return sorted(nums)[len(nums) // 2]
+    
+    def majorityElement3(self, nums):
+        """ using dict """
+        times = {}
+        for i in range(len(nums)):
+            times[nums[i]] = times.get(nums[i], 0) + 1
             
+        # two loop method: later one is preferred
+        # for i in times.items():
+        #     if i[1] > len(nums) // 2:
+        #         return i[0]
+        
+        for i in nums:
+            if times[i] > len(nums) // 2:
+                return i
 
-
+            
 class Solution:
     """ JZ version """
     def MoreThanHalfNum_Solution(self, numbers):
+        """ Jz version can not be solved using sort trick, cuz major may not exists """
         nums = numbers
         cnt, major = 1, nums[0]
         for i in range(1, len(nums)):
@@ -57,3 +78,4 @@ class Solution:
             return major
         else:
             return 0
+
