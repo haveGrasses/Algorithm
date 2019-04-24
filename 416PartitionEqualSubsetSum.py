@@ -51,4 +51,5 @@ class Solution:
                 if j >= n:  # 本次循环直接在上一次循环的dp上进行更改
                     dp[j] = dp[j] or dp[j-n]
         return dp[-1]  # return dp[total]
+    # todo: use memo to avoid repeat calculations
         
