@@ -28,4 +28,27 @@ class Solution:
                 # dp[i][j]中对应的i实际上是nums[i-1]代表的数字，因此这里是 j-nums[i-1]
                 # print(np.array(dp))
         return dp[n][total]
+    
+    def canPartition(self, nums):
+        """ optimization of space 
+        每次循环用到的只是上一次更新的dp的值，所以不需要再存二维矩阵,直接在上一次的基础上更新 
+        """
+        total = sum(nums)
+        if total & 1 == 1:
+            return 0
+        
+        total //= 2
+        
+        dp = [0 for _ in range(total+1)] 
+        dp[0] = 1  # 无论i为多少，一定能构成和0
+        
+        for n in nums:
+            for j in range(total, 0, -1):  # 注意是要从后往前进行更新！！！
+                # why: 加入目前给定上一个num更新出来的dp，现在要在这个dp上进行更新
+                # 如果从left往right方向更新，则上一轮left part的那些值已经被这一轮的
+                # 更新覆盖掉了，所以如果从right往left更新的话就不会影响
+                # 更新下一个值需要用到的left part的东西
+                if j >= n:  # 本次循环直接在上一次循环的dp上进行更改
+                    dp[j] = dp[j] or dp[j-n]
+        return dp[-1]  # return dp[total]
         
