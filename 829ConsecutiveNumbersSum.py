@@ -83,7 +83,7 @@ class Solution(object):
         return ret
     
     def consecutiveNumbersSum3(self, N):
-        # LC: time out
+        # LC: python2 time out, python3 passed 48%
         ans = 0  # attention: ans begins with 0, below already have num N itself into consideration
         for i in range(1, N+1):  # actually, no need to loop to N, but N is the upper bound, with break in for loop, no need to know the actual bound
             xi = N - i * (i-1) / 2
@@ -94,7 +94,7 @@ class Solution(object):
         return ans
     
     def consecutiveNumbersSum4(self, N):
-        # LC: 33%, why use while would be faster than for ???
+        # LC: both python3 and python2 passed, around 33%, why use while would be faster than for ???
         i, ans = 1, 0
         while True:
             xi = (N - i*(i-1)/2)
