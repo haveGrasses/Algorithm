@@ -1,4 +1,5 @@
 class Solution(object):
+    """ iterative method  """
     def consecutiveNumbersSum(self, N):
         ret = []
         start, end, curSum = 1, 2, 3
