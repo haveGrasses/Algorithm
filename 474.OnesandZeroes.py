@@ -18,6 +18,8 @@ class Solution:
                 for j in range(n, ones-1, -1):
                     dp[i][j] = max(dp[i][j], dp[i-zeros][j-ones]+1)
         return dp[m][n]
+    # the lower bound in for loop: when i < zeros, it means that with current i, i cannot form this str, so won't update dp
+    # it keeps the value of the last result, the same is of j
     
     def findMaxForm2(self, strs, m, n):
         
