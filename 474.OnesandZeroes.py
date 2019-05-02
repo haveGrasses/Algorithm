@@ -36,7 +36,11 @@ class Solution:
                         
         return dp[m][n]
     
-    # greedy algorithm: 99.71%
+    # greedy algorithm: python2 99.71%, python3 error at:
+    # ["111","1000","1000","1000"] 9 3
+    # output: 1
+    # Expected: 3
+
     def findMaxForm(self, strs, m, n):
         strs = map(lambda x: [x.count('0'), x.count('1')], strs)
         # 要用的0或1最少的排在前面
