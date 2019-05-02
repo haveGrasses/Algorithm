@@ -36,7 +36,24 @@ class Solution:
                         
         return dp[m][n]
     
-    # TODO: greedy algorithm
+    # greedy algorithm: 99.71%
+    def findMaxForm(self, strs, m, n):
+        strs = map(lambda x: [x.count('0'), x.count('1')], strs)
+        # 要用的0或1最少的排在前面
+        str1 = sorted(strs, key=lambda x: min(x[0], x[1]))
+        # 组成这个str后剩余的0或1最多的排在前面，为什么需要这个？
+        str2 = sorted(strs, key=lambda x: min(m-x[0], n-x[1]), reverse=True)
+        
+        def count(strs, m, n):
+            res = 0
+            for s in strs:
+                if s[0] <= m and s[1] <= n:
+                    res += 1
+                    m -= s[0]
+                    n -= s[1]
+            return res
+        
+        return max(count(str1, m, n), count(str2, m, n))
 
 
 s = Solution()
