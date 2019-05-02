@@ -17,7 +17,7 @@ class Solution(object):
         [[1, 0, 1], [1, 0, 1], [1, 0, 1], [1, 0, 1]]
         """
         
-        # another example
+        # similarly, a = b = somethingMutable should be used with caution as well
         """
         >>> pre = cur = [1] * 4
         >>> pre
