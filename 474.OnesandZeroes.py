@@ -36,10 +36,9 @@ class Solution:
                         
         return dp[m][n]
     
-    # greedy algorithm: python2 99.71%, python3 error at:
-    # ["111","1000","1000","1000"] 9 3
-    # output: 1
-    # Expected: 3
+    # greedy algorithm: python2 99.71%, python3 error, reason: 
+    # strs is a map obeject, after sorted the first sort it becomes a null list!
+    # so str2 is null, so we cannot get the right answer
 
     def findMaxForm(self, strs, m, n):
         strs = map(lambda x: [x.count('0'), x.count('1')], strs)
@@ -58,6 +57,26 @@ class Solution:
             return res
         
         return max(count(str1, m, n), count(str2, m, n))
+    
+    # greedy in py3, revised: strs = list(map(lambda x: [x.count('0'), x.count('1')], strs))
+    class Solution:
+        def findMaxForm(self, strs, m, n):
+            strs = list(map(lambda x: [x.count('0'), x.count('1')], strs))
+            
+            str1 = sorted(strs, key=lambda x: min(x[0], x[1]))
+            
+            str2 = sorted(strs, key=lambda x: min(m-x[0], n-x[1]), reverse=True)
+
+            def count(strs, m, n):
+                res = 0
+                for s in strs:
+                    if s[0] <= m and s[1] <= n:
+                        res += 1
+                        m -= s[0]
+                        n -= s[1]
+                return res
+
+            return max(count(str1, m, n), count(str2, m, n))
 
 
 s = Solution()
