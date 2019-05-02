@@ -39,6 +39,9 @@ class Solution:
     # greedy algorithm: python2 99.71%, python3 error, reason: 
     # strs is a map obeject, after sorted the first sort it becomes a null list!
     # so str2 is null, so we cannot get the right answer
+    # map object is an iterator, Once an iterator has been exhausted (meaning, fully iterated over), 
+    # there is nothing left to be iterated over, so iterating over it a second time won't yield anything
+    # When using sorted(), you're also iterating over the map iterator object:
 
     def findMaxForm(self, strs, m, n):
         strs = map(lambda x: [x.count('0'), x.count('1')], strs)
@@ -77,7 +80,8 @@ class Solution:
                 return res
 
             return max(count(str1, m, n), count(str2, m, n))
-
+        
+        # todo: python3 top solution, do not understand
 
 s = Solution()
 print(s.findMaxForm(["10","0001","111001","1","0"], 5, 3))
