@@ -33,8 +33,10 @@ class Solution:
                         dp[x][y] = max(1 + dp[x-z][y-o], dp[x][y])
                         
         return dp[m][n]
+    
+    # TODO: greedy algorithm
 
 
 s = Solution()
-%time print(s.findMaxForm(["10","0001","111001","1","0"], 5, 3))
-%time print(s.findMaxForm2(["10","0001","111001","1","0"], 5, 3))
+print(s.findMaxForm(["10","0001","111001","1","0"], 5, 3))
+print(s.findMaxForm2(["10","0001","111001","1","0"], 5, 3))
