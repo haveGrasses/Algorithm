@@ -14,3 +14,5 @@ class Solution:
             dp = update
         return dp[limit+S]
   
+# add dfs method: a slower but acceptable way
+
