@@ -16,3 +16,5 @@ class Solution:
   
 # add dfs method: a slower but acceptable way
 
+# 用next的方法是对二维dp空间的一个简化 如果还是用二维的dp，将不需要用next
+# 原因还不知道
