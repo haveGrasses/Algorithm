@@ -37,3 +37,67 @@ s = Solution()
 w = [1, 2, 3]
 v = [6, 10, 12]
 print(s.knapsack(w, v, 5))
+
+
+class Solution:
+    """ bottom up, CAUTION: a false solution! """
+    def knapsack(self, w, v, C):
+        n = len(w)
+        # dp = [[0 for _ in range(C+1)] for _ in range(n)]
+        dp = [
+            [0 if w[0] > j else v[0] for j in range(C+1)]
+            for _ in range(n)
+        ]  # let all row be the same as row 0
+        
+        # dp: row i: the ith item, col j: the capacity j
+        # dp[i][j]: the best value we can get using the first i item if the capacity limit is j
+        
+        # bottom up, the bottom case
+        # for row 0, the best value is the value of the 0th item if
+        # the weight of the 0th item is smaller than column value else 0
+        
+        # for i in range(C+1):
+        #     dp[0][i] = 0 if w[0] > C else v[0]
+        
+        for i in range(1, n):
+            for j in range(w[i], C+1):  # note the start idx: for j=0 to w[i],
+                # j-w[i] < 0: we don't bother to update these values 
+                # these is a bug: these un-updated values is kept as the values of dp[0]
+                # but it should be dp[i-1]
+                dp[i][j] = max(dp[i-1][j], v[i] + dp[i-1][j-w[i]])
+                
+        return dp[-1][-1]
+  
+
+"""
+i=2
+[[ 0  6  6  6  6  6]
+ [ 0  6 10 16 16 16]
+ [ 0  6  6 16  6  6]]
+-------
+[[ 0  6  6  6  6  6]
+ [ 0  6 10 16 16 16]
+ [ 0  6  6 16 18  6]]
+-------
+[[ 0  6  6  6  6  6]
+ [ 0  6 10 16 16 16]
+ [ 0  6  6 16 18 22]]
+-------
+----------------------
+the last row: [ 0  6  6 16 18 22]]
+should be: [ 0  6 10 16 18 22]
+because we do not loop j from 0, 
+the unchanged part:[0  6  6 16 * *] is recorded as the row 0 
+
+if we loop from 0, this can be fixed
+
+so it prove that if we record dp as a 2-dimension array, there
+is a lot of inefficient operations
+
+if dp is 1-d array, this line `for j in range(w[i], C+1):` is right
+"""
+s = Solution()
+w = [1, 2, 3]
+v = [6, 10, 12]
+print(s.knapsack(w, v, 5))
+
