@@ -120,3 +120,14 @@ class Solution:
         return dp[-1][-1]
 
 
+class Solution:
+    """ simplified 1-d array """
+    def knapsack(self, w, v, C):
+        n = len(w)
+        dp = [0 if w[0] > j else v[0] for j in range(C+1)]
+        
+        for i in range(1, n):
+            for j in range(C, w[i]-1, -1):
+                dp[j] = max(dp[j], v[i] + dp[j-w[i]])
+        return dp[-1]
+ 
