@@ -25,3 +25,20 @@ class Solution:
     
     def isValidBST(self, root: TreeNode) -> bool:
         return self.validate(root)
+
+    
+class Solution:
+    def validate(self, root, lower, upper):
+        if not root:
+            return True
+        
+        # 当传入区间信息时，每次只需要关注该结点本身的值是否在区间内，不需要 check 左结点和右结点的大小
+        # 左右结点是否合法会在下一次递归中确定，并且下一次已经传入了确定其是否合法的区间限制
+        if root.val >= upper or root.val <= lower:
+            return False
+        
+        return self.validate(root.left, lower, root.val) and \
+               self.validate(root.right, root.val, upper)
+    
+    def isValidBST(self, root: TreeNode) -> bool:
+        return self.validate(root, -float('inf'), float('inf'))
