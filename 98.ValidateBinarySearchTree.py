@@ -42,3 +42,26 @@ class Solution:
     
     def isValidBST(self, root: TreeNode) -> bool:
         return self.validate(root, -float('inf'), float('inf'))
+
+
+class Solution:
+    """ 一个使用inorder遍历的方法，优化的方法是只记录上一次inorder遍历到的值 这一次一定大于它就行 并且如果不满足情况的时候直接return 没必要再遍历下去了 """
+    def isValidBST(self, root):
+        if not root:
+            return True
+        self.flag = True
+        self.pre = -float('inf')
+        self.inorder(root)
+        return self.flag
+    
+    def inorder(self, root):
+        if root.left:
+            self.inorder(root.left)
+        
+        if root.val <= self.pre:
+            self.flag = False
+            return
+        
+        self.pre = root.val
+        if root.right:
+            self.inorder(root.right)
