@@ -26,9 +26,8 @@ class Solution:
             heapq.heappush(heap, i)
             if len(heap) > k:  # 严格大于，实际维护的heap的大小是k个，但是过程中先是让heap里的元素多一个，然后pop掉最小的那一个，
                 # 这样就能保证每次的pop不会出现下面的问题：
-                # 如果一旦来一个就pop最小的出去，又可能这一次pop的元素实际上下一次push的元素大
+                # 如果一直维持k个长度不变的情况下，来一个就pop最小的出去，有可能这一次pop的元素实际上比下一次push的元素大
                 # 但是如果长度是k+1的话，这一次pop的元素如果比下一次add的大的话，是不会影响第k大的
                 heapq.heappop(heap)
+            # 当heap中非元素个数大于k个之后会重复进行添加删除添加删除的操作，最终以删除结束，一次次过滤掉小的元素
         return heapq.heappop(heap)
- 
-
