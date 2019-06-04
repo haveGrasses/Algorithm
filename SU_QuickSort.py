@@ -42,5 +42,5 @@ def partition2(array, l, r):
         if array[j] <= x:
             swap(array, i, j)
             i += 1
-    swap(nums, i, r)
+    swap(array, i, r)
     return i
