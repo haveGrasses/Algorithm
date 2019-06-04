@@ -14,6 +14,7 @@ def qSort(nums, lo, hi):
     else:
         return qSort(nums, lo, p-1) + [nums[p]]
 
+    
 def partition(nums, lo, hi):
     """
     :return: index 
