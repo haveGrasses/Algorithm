@@ -52,7 +52,12 @@ class Solution:
     def partition(self, nums, lo, hi):
         def swap(nums, i, j):
             nums[i], nums[j] = nums[j], nums[i]
-        i, j = lo+1, hi
+        
+        # i, j = lo+1, hi  # 不加优化的写法
+        
+        swap(nums, lo, lo+(hi-lo)//2)  # 加一步优化 对选择pivot的元素进行优化，选lo+(hi-lo)//2位置的
+        i, j = lo+1, hi  # 这一步优化后beats 67.91%
+        
         # 一定要写while True，而不是while i < j，原因有二：
         # 1、如果while的条件写在外面，里面没有跳出的限制的话，有可能经过两轮的while之后i会变得大于等于j
         # 2、当i和j相等的时候，还是希望更能够进入循环，why？
@@ -68,3 +73,4 @@ class Solution:
             swap(nums, i, j)
         swap(nums, lo, j)
         return j
+
