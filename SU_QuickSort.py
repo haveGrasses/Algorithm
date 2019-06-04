@@ -1,20 +1,16 @@
 def quickSort(nums):
-    return qSort(nums, 0, len(nums)-1)
+    qSort(nums, 0, len(nums)-1)
 
 
 def qSort(nums, lo, hi):
-    if lo == hi:
-        return [nums[lo]]
+    if lo >= hi:
+        return 
     
     p = partition(nums, lo, hi)
-    if lo < p < hi:
-        return qSort(nums, lo, p-1) + [nums[p]] + qSort(nums, p+1, hi)
-    elif p == lo:
-        return [nums[p]] + qSort(nums, p+1, hi)
-    else:
-        return qSort(nums, lo, p-1) + [nums[p]]
-
+    qSort(nums, lo, p-1)
+    qSort(nums, p+1, hi)
     
+
 def partition(nums, lo, hi):
     """
     :return: index 
@@ -36,6 +32,3 @@ def partition(nums, lo, hi):
         swap(nums, i, j)
     swap(nums, lo, j)
     return j
-
-import numpy.random as rand
-print('sorted:', quickSort(rand.randint(10, size=10)))
