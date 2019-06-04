@@ -31,3 +31,40 @@ class Solution:
                 heapq.heappop(heap)
             # 当heap中非元素个数大于k个之后会重复进行添加删除添加删除的操作，最终以删除结束，一次次过滤掉小的元素
         return heapq.heappop(heap)
+
+
+# using partition：16%
+# attention: lo和hi的开始位置；partition中i和j的初始位置；while的进入条件；内层while的比较不等式等号在哪里；while的break写在内层while之后；
+class Solution:
+    def findKthLargest(self, nums, k):
+        k = len(nums) - k
+        lo, hi = 0, len(nums)-1
+        while lo < hi:
+            j = self.partition(nums, lo, hi)
+            if j > k:
+                hi = j - 1
+            elif j < k:
+                lo = j + 1
+            else:
+                break
+        return nums[k]
+
+    def partition(self, nums, lo, hi):
+        def swap(nums, i, j):
+            nums[i], nums[j] = nums[j], nums[i]
+        i, j = lo+1, hi
+        # 一定要写while True，而不是while i < j，原因有二：
+        # 1、如果while的条件写在外面，里面没有跳出的限制的话，有可能经过两轮的while之后i会变得大于等于j
+        # 2、当i和j相等的时候，还是希望更能够进入循环，why？
+        # 当 i 和 j 相等的时候还是要走一遍这个 while 循环，原因是lo需要和j交换位置，
+        # 交换位置的前提是必须保证nums[j]是小于等于nums[lo]的，走一遍内层的while能够保证这一
+        while True:
+            while i < hi and nums[i] <= nums[lo]:
+                i += 1
+            while j > lo and nums[j] > nums[lo]:
+                j -= 1
+            if i >= j:
+                break
+            swap(nums, i, j)
+        swap(nums, lo, j)
+        return j
