@@ -15,8 +15,8 @@ class Solution(object):
                 nums1_set.remove(i)
         return res
     
-    # same as:
-    class Solution(object):
+ # same as:
+ class Solution(object):
     def intersection(self, nums1, nums2):
         nums1_set = set(nums1)
         nums2_set = set(nums2)
