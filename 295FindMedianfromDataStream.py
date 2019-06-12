@@ -59,7 +59,16 @@ class MedianFinder(object):
         if len(large) > len(samll):
             return large[0]
         return (large[0] - samll[0]) / 2
-        
+
+    
+# the above methods is suitable for `data stream`, but for a given array, 
+# the most efficient way is to use `PARTITION`, no extra sapce and O(logn)? i guess
+
+# TODO
+def findMedian(arr):
+    pass
+
+# 以上是处理流数据的方法，对于给定的array来说，最优的办法是快排partition思路
 
 
 # Your MedianFinder object will be instantiated and called as such:
