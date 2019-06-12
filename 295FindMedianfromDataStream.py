@@ -68,8 +68,6 @@ class MedianFinder(object):
 def findMedian(arr):
     pass
 
-# 以上是处理流数据的方法，对于给定的array来说，最优的办法是快排partition思路
-
 
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
