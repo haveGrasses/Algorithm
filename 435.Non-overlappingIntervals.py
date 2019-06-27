@@ -21,4 +21,17 @@ class Solution:
                 res += 1
                 pre = i
         return len(intervals) - res
-        
+    
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        """ 存pre的时候不需要把整个interval存下来，只需要存结尾就行了 """
+        if not intervals:
+            return 0
+        intervals = self.sortIntervals(intervals)
+        cnt = 1
+        preEnd = intervals[0][1]
+        for i in intervals[1:]:
+            if i[0] >= preEnd:
+                cnt += 1
+                preEnd = i[1]
+        return len(intervals) - cnt
+    
