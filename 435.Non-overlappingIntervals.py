@@ -41,7 +41,7 @@ class Solution:
             return 0
         
         cnt = 0
-        preEnd = float('-inf')  # 让第一个区间的end可以记录下来
+        preEnd = float('-inf')  # 让第一个区间的end可以记录下来，论如何将循环中的第一次赋值整合到循环的过程中
         for i in sorted(intervals, key=lambda x: x[1]):
             if i[0] >= preEnd:
                 preEnd = i[1]
