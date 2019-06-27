@@ -35,3 +35,17 @@ class Solution:
                 preEnd = i[1]
         return len(intervals) - cnt
     
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        """ 直接记录需要rease的个数也行 beats 100% """
+        if not intervals:
+            return 0
+        
+        cnt = 0
+        preEnd = float('-inf')  # 让第一个区间的end可以记录下来
+        for i in sorted(intervals, key=lambda x: x[1]):
+            if i[0] >= preEnd:
+                preEnd = i[1]
+            else:
+                cnt += 1
+        return cnt
+    
