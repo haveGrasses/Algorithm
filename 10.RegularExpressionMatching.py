@@ -1,8 +1,17 @@
+
 class Solution:
+    """ dp，列是字符串，行是pattern，初始化后，两层循环，每次把当前遍历到的格子当成是最后一个s和最后一个p，
+    当前的值分两种情况进行更新：
+    1、当前的pattern匹配到了当前的s：当前字符相等或者当前p是`.`：此时当前dp的值取决于i-1和p-1格子的值
+    2、当前的pattern没匹配上，这里又分两种，一是因为当前p是*没匹配上，这种是有救的，二是当前p是普通字符串，这种就不作为了，因为默认值就是False
+    因此第二种情况可以简化为只考虑当前p是*的情况 加个if：
+        1、*匹配1+次：前提是先匹配1次，即p[j-2] == s[i-1]或者p[j-2] == '.'，
+        之后dp的更新考虑是仅匹配一次还是匹配1次以上，这两者是一样的，都依赖dp[i-1][j],
+        为什么匹配1次和1次以上是一样的：匹配一次相当一在本轮匹配一次和在下一轮用p匹配0次，都是要在本轮匹配一次
+        匹配多次是在本轮匹配一次，在下一次匹配多次
+        2、*匹配0个字符：dp[i][j] = dp[i][j-2]
+    """
     def isMatch(self, s: str, p: str) -> bool:
-        # if (not s) or (not p):
-        #     return False
-        
         m, n = len(s), len(p)
         dp = [[0 for _ in range(n+1)] for _ in range(m+2)]
         dp[0][0] = True  # empty p matches empty s
@@ -33,7 +42,7 @@ class Solution:
         # 
         # if not p:
         #     return False
-        # 
+        
         for i in range(1, m+1):
             for j in range(1, n+1):
                 curS = s[i-1]
@@ -41,9 +50,11 @@ class Solution:
                 if curS == curP or curP == '.':
                     dp[i][j] = dp[i-1][j-1]
                 elif curP == '*': 
-                    # `*`的前一个字符匹配到了最后一个s，说明`*`有可能匹配一次，当前的dp[i][j]取决于前j-1个p能否匹配到s-1
+                    """这里面其实是一个if else，理解一下如何转换成现在的样子的"""
                     dp[i][j] |= dp[i][j-2] # * match 0 time
                     # * match 1 or more times
+                    # `*`的前一个字符匹配到了最后一个s，说明`*`有可能匹配一次或更多，
+                    # 如何描述匹配多次：仍然拿现在的p去匹配前i-1的s
                     dp[i][j] |= dp[i-1][j] and (p[j-2] == '.' or p[j-2] == curS)
                     
         return bool(dp[m][n])
