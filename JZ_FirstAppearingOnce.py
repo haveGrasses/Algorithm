@@ -1,4 +1,5 @@
 class Solution:
+    """ 队列统计候选集，用哈希维护这个候选集 """
     def __init__(self):
         self.cnt = {}  # 统计每个字符出现的次数
         self.queue = []  # 第一个只出现一次的字符候选集，queue的第一个元素即为当前只出现一次的元素
@@ -11,7 +12,7 @@ class Solution:
         # 哈希统计
         # self.cnt[char] = self.cnt.get(char, 0) + 1  # 一行解决，但不是最好的 其实不需要确切统计每个元素出现的次数，如下所示
         if char in self.cnt:
-            self.cnt[char] = 2  #  大于1的直接记为2
+            self.cnt[char] = 2  # 大于1的直接记为2
         else:
             self.cnt[char] = 1
             
