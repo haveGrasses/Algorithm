@@ -1,6 +1,7 @@
 from typing import List
 
 
+# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -9,8 +10,8 @@ class TreeNode:
 
 
 class Solution:
-    """ 使用优先队列即可 """
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    """ 和levelorder一样，只需要res[::-1]把结果反序一下就行了"""
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []
         res, queue = [], []
@@ -29,5 +30,5 @@ class Solution:
                     
                 cnt -= 1
             res.append(tmp)
-        return res
-
+        return res[::-1]
+ 
