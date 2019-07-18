@@ -7,6 +7,8 @@
     - 获取指定索引的节点  -->  辅助在指定索引插入节点
     - **向指定索引插入元素**， 其余元素一次后移
 """
+
+
 class Node(object):
     def __init__(self, value):
         self.val = value
