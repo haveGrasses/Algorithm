@@ -2,9 +2,11 @@
 向双链表中指定位置插入一个元素，首先实现一个双链表，通过一个辅助的Node结构来作为双链表中的data
 实现：
     - 求链表的长度
+        - cur初始值：dummy head，length初始值：0
     - 打印链表
     - 向链表结尾添加元素
     - 获取指定索引的节点  -->  辅助在指定索引插入节点
+        - cur初始值：head.next,
     - **向指定索引插入元素**， 其余元素一次后移
 """
 
@@ -41,7 +43,7 @@ class DoubleLinkedList:
             if cur.val is None:
                 res += f'--> None'
             else:
-                res += f'--> {cur.val.val}'
+                res += f'--> {cur.val}'
             cur = cur.next
         print(res)
     
@@ -61,14 +63,14 @@ class DoubleLinkedList:
         return cur
     
     def append(self, value):
-        node = Node(value)
+        new_node = Node(value)
         pre = self.tail.pre
-        
-        pre.next = node
-        node.pre = pre
-        
-        self.tail.pre = node
-        node.next = self.tail
+
+        new_node.pre = pre
+        pre.next = new_node
+
+        self.tail.pre = new_node
+        new_node.next = self.tail
     
     def insert(self, index, value):
         """
@@ -92,9 +94,7 @@ class DoubleLinkedList:
         cur = self.get(index)  # index位置的当前元素
         
         if cur:
-            node = Node(Node)
-            node.val = Node(value)
-            print('[debug]', node, node.val, node.pre, node.next)
+            node = Node(value)
             pre_node = cur.pre
             
             pre_node.next = node
@@ -102,3 +102,4 @@ class DoubleLinkedList:
             
             node.next = cur
             cur.pre = node
+
