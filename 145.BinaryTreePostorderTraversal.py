@@ -1,8 +1,12 @@
+from typing import List
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
+
 
 class Solution:
     """ recursion """
@@ -17,7 +21,8 @@ class Solution:
         self.postorderTraversal(root.right)
         self.res.append(root.val)
         return self.res
-    
+
+
 class Solution:
     """ non-recursion 
     和preorder思路一样，只需要再借助一个栈来实现反序就行！！！妙！
