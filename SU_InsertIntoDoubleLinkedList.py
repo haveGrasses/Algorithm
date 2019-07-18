@@ -18,6 +18,7 @@ class Node(object):
 
 class DoubleLinkedList:
     def __init__(self):
+        # dummy head and tail node
         self.head = Node(None)
         self.tail = Node(None)
         self.head.next = self.tail
