@@ -27,7 +27,6 @@ class Solution:
 
 class Solution:
     """ non-recursive
-
     """
 
     def inorderTraversal(self, root: TreeNode) -> List[int]:
@@ -43,7 +42,7 @@ class Solution:
             # 没有左孩子了，遍历当前节点
             cur = stack.pop()
             res.append(cur.val)
-            # 当前节点遍历完，应该遍历其右子数，对右子树采取同样的方法，先走到最左边，再遍历最后一个，然后遍历右边
+            # 当前节点遍历完，应该遍历其右子数，对右子树进while循环采取同样的方法，先走到最左边，再遍历最后一个，然后遍历右边
             cur = cur.right
         return res
 
