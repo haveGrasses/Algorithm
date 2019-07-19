@@ -14,7 +14,5 @@ def binary_search(arr, target):
 arr = [3, 9, 28, 67, 12, 45]
 arr.sort()
 print(arr)
-print(binary_search_while(12, arr))
-print(binary_search_while(3, arr))
-print(binary_search_while(9, arr))
-print(binary_search_while(99, arr))
+print(binary_search(arr, 12))
+
