@@ -18,5 +18,6 @@ class Solution:
                     r -= 1
         return closet
 
+
 s = Solution()
-print(s.threeSumClosest([1,1,1,0], -100))
+print(s.threeSumClosest([1, 1, 1, 0], -100))
