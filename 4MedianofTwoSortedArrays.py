@@ -16,7 +16,8 @@ class Solution(object):
         while start <= end:
             # partitionX and partitionY stands for how many elements in the left partition of nums1 and nums2
             partitionX = (start + end) // 2  
-            # the sum of the left partition should equal to half of total length, but plus 1 gives left part one more elements given odd case  
+            # the sum of the left partition should equal to half of total length,
+            # but plus 1 gives left part one more elements given odd case
             partitionY = (len1 + len2 + 1) // 2 - partitionX  
             
             # edge cases: when left or right part is null, also runs smoothly when nums1 is null or nums2 is null
