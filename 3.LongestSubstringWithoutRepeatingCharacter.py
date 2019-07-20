@@ -9,14 +9,13 @@ class Solution1:
         used = {}
         start, maxLength = 0, 0
         for i in range(len(s)):
-            if s[i] in used and start <= used[s[i]]:  #  条件中加 start <= usedChar[s[i]] 是为了不让start后退
+            if s[i] in used and start <= used[s[i]]:  # 条件中加 start <= usedChar[s[i]] 是为了不让start后退
                 start = used[s[i]] + 1
             else:  # 写不写这个else是一样的，
                 # 原因是当start更新后这个maxLength在start进行更新的时候肯定是小于原来的maxLength
                 # 写个else可以避免不必要的更新操作
                 maxLength = max(maxLength, i-start+1)
             used[s[i]] = i
-            print(f'i={i}, s[i]={s[i]}, start={start}, maxLength={maxLength}, used[s[i]]={used[s[i]]}')
         return maxLength
 
 
