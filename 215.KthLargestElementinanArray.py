@@ -1,6 +1,9 @@
 # 求第k *大* 要用 最 *小* 堆，才能拿到前k大的元素里面最小的那个，就是第k大
 # 所以关键就是怎么维护这个堆，先装k个到堆里，之后每次来一个值，让它去更新目前堆中的最小值，保留较大的进堆
 
+# 补充：求第k大可以直接用最小堆解决，第k小要用最大堆，python中没有最大堆，可以在push的时候用负数转化，也可以
+# 在一开始就将第k小转换为第 n-k+1 大的问题，直接用最小堆解决！
+
 import heapq
 class Solution:
     def findKthLargest(self, nums, k):
@@ -37,7 +40,7 @@ class Solution:
 # attention: lo和hi的开始位置；partition中i和j的初始位置；while的进入条件；内层while的比较不等式等号在哪里；while的break写在内层while之后；
 class Solution:
     def findKthLargest(self, nums, k):
-        k = len(nums) - k
+        k = len(nums) - k  # 第k大等价于第n-k+1小，第n-k+1小取的是排序后第n-k的位置，这点要捋清楚
         lo, hi = 0, len(nums)-1
         while lo < hi:
             j = self.partition(nums, lo, hi)
@@ -73,4 +76,3 @@ class Solution:
             swap(nums, i, j)
         swap(nums, lo, j)
         return j
-
