@@ -76,3 +76,14 @@ class Solution:
             swap(nums, i, j)
         swap(nums, lo, j)
         return j
+
+    # 补充，findKthLargest这个函数可以用来找无序数组的中位数，就像twosortedarray那道题，findKthElement，可以一用来findMedian
+    def findMedian(self, nums):
+        """ 未经测试 """
+        n = len(nums)
+        m1 = n // 2 + 1  # +1是为了从索引变到位置
+        m2 = (n-1) // 2 + 1
+        v1 = self.findKthLargest(nums, m1)
+        v2 = self.findKthLargest(nums, m2)
+        return (v1+v2) / 2
+
