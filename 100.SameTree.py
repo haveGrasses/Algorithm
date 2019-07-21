@@ -1,9 +1,9 @@
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 # 96%
 class Solution:
@@ -27,7 +27,6 @@ class Solution:
         # else:
         #     return False
     
-    
     def compare(self, p, q):
         if p.val != q.val:
             return False
@@ -48,4 +47,4 @@ class Solution:
             self.isSameTree(p.right, q.right)
         return p == q
         
-  
+
