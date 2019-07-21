@@ -46,7 +46,7 @@ class MedianFinder(object):
         :type num: int
         :rtype: None
         """
-        samll, large = self.heaps  # when samll and large change, heaps changes accordingly, because list is changable?
+        samll, large = self.heaps  # when small and large change, heaps changes accordingly, because list is changable?
         heappush(samll, -heappushpop(large, num))
         if len(large) < len(samll):
             heappush(large, -heappop(samll))
@@ -62,7 +62,7 @@ class MedianFinder(object):
 
     
 # the above methods is suitable for `data stream`, but for a given array, 
-# the most efficient way is to use `PARTITION`, no extra sapce and O(logn)? i guess
+# the most efficient way is to use `PARTITION`, no extra space and O(logn)? i guess
 
 # TODO
 def findMedian(arr):
