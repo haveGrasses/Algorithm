@@ -1,10 +1,9 @@
 class Solution:
     def helper(self, nums1, lo1, hi1, nums2, lo2, hi2, k):
-        print(f'[in helper], lo1, hi1, lo2, hi2:{lo1, hi1, lo2, hi2},k: {k}')
-
-        if lo1 > hi1:
+        # edge cases
+        if lo1 > hi1:  # 可能是nums1为空？
             return nums2[lo2+k-1]
-        elif lo2 > hi2:
+        elif lo2 > hi2:  # nums2为空？
             return nums1[lo1+k-1]
         if k == 1:
             return min(nums1[lo1], nums2[lo2])
@@ -12,17 +11,10 @@ class Solution:
         i = min(lo1 + k // 2, hi1 + 1)  # +1: i表示的不是索引，是加上几个数字之后的值
         j = min(lo2 + k // 2, hi2 + 1)  # 不是特别明白
         if nums1[i-1] > nums2[j-1]:
-            return self.helper(
-                nums1, lo1, hi1,
-                nums2, j, hi2,
-                k-(j-lo2)
-            )  # k-(j-lo) 的原因是：前面已经排除了j-lo2个小的数，需要在剩下的大数中找第k-(j-lo2)大
+            return self.helper(nums1, lo1, hi1, nums2, j, hi2, k-(j-lo2))
+            # k-(j-lo) 的原因是：前面已经排除了j-lo2个小的数，需要在剩下的大数中找第k-(j-lo2)大
         else:
-            return self.helper(
-                nums1, i, hi1,
-                nums2, lo2, hi2,
-                k-(i-lo1)
-            )
+            return self.helper(nums1, i, hi1, nums2, lo2, hi2, k-(i-lo1))
 
     # 找第k小的数字
     def kthElement(self, nums1, nums2, k):
