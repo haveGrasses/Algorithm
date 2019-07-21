@@ -66,6 +66,7 @@ TreeNode *getLastNode(TreeNode *root)
 
 # 每次递归都下降一层，每次都求树的高度，时间复杂度为O(lgN * lgN)
 class Solution:
+    """ 未经测试的版本 """
     def getLastNode(self, root):
         if not root or not root.left:  # 空或者叶子节点
             return root
