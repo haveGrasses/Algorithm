@@ -1,3 +1,5 @@
+from typing import List
+
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
@@ -14,7 +16,7 @@ class Solution:
         return res
     
     def dfs(self, grid, x, y, m, n):
-        """ 从grid[x][y] 开始 floodfill """
+        """ 从grid[x][y] 开始 flood-fill """
         # 主意`grid[x][y] != '1'`这里是字符串比较
         if x < 0 or x >= m or y < 0 or y >= n or grid[x][y] != '1':
             return 
