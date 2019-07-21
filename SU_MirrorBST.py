@@ -27,3 +27,7 @@ class Solution:
         root.left = rightNode
         root.right = leftNode
         return root
+
+    def mirrorBST2(self, root):
+        """ 非递归实现：使用先序遍历，每遍历到一个节点就交换它的左右孩子 """
+        pass
