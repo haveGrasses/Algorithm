@@ -1,10 +1,4 @@
 class Solution:
-    def kthElement(self, nums1, nums2, k):
-        if k < 1 or k > (len(nums1) + len(nums2)):
-            return None
-        lo1, hi1, lo2, hi2 = 0, len(nums1) - 1, 0, len(nums2) - 1
-        return self.helper(nums1, lo1, hi1, nums2, lo2, hi2, k)
-
     def helper(self, nums1, lo1, hi1, nums2, lo2, hi2, k):
         print(f'[in helper], lo1, hi1, lo2, hi2:{lo1, hi1, lo2, hi2},k: {k}')
 
@@ -30,26 +24,24 @@ class Solution:
                 k-(i-lo1)
             )
 
+    # 找第k小的数字
+    def kthElement(self, nums1, nums2, k):
+        if k < 1 or k > (len(nums1) + len(nums2)):
+            return None
+        lo1, hi1, lo2, hi2 = 0, len(nums1) - 1, 0, len(nums2) - 1
+        return self.helper(nums1, lo1, hi1, nums2, lo2, hi2, k)
+
     # 同样的helper可以找出两个有序数组中的中位数
     def findMedian(self, nums1, nums2):
-        # if not nums1:
-        #     return (nums2[len(nums2)//2] + nums2[(len(nums2)-1)//2]) / 2  # 奇数和偶数长度都适用的找中位数的方法
-        # if not nums2:
-        #     return (nums1[len(nums1) // 2] + nums1[(len(nums1)-1) // 2]) / 2
-
-        lo1, hi1, lo2, hi2 = 0, len(nums1)-1, 0, len(nums2)-1
-        if (len(nums1) + len(nums2)) % 2 != 0:  # odd
-            k = (len(nums1) + len(nums2)) // 2 + 1  # 这里+1是因为中位数找出的位置是索引，而函数的定义中的k是第几小，比索引大1
-            print(f'[debug], lo1, hi1, lo2, hi2:{lo1, hi1, lo2, hi2},k: {k}')
-            return self.helper(nums1, lo1, hi1, nums2, lo2, hi2, k)
-        else:  # even
-            k1 = (len(nums1) + len(nums2)) // 2 - 1 + 1
-            k2 = (len(nums1) + len(nums2)) // 2 + 1
-            print(f'[debug], lo1, hi1, lo2, hi2:{lo1, hi1, lo2, hi2},k: {k1, k2}')
-            return (
-                self.helper(nums1, lo1, hi1, nums2, lo2, hi2, k1) +
-                self.helper(nums1, lo1, hi1, nums2, lo2, hi2, k2)
-            ) / 2
+        n1, n2 = len(nums1), len(nums2)
+        lo1, hi1, lo2, hi2 = 0, n1-1, 0, n2-1
+        # 奇数和偶数长度都适用的找中位数的方法, (n1 + n2) // 2 索引对应的数和 (n1 + n2 - 1) // 2 对应的数取平均
+        # 如果是奇数，这两个索引是一样的，如果是偶数是一前一后不一样的
+        k1 = (n1 + n2) // 2 + 1  # 这里在索引的基础上加1转换为函数定义中的第k小的位置
+        k2 = (n1 + n2 - 1) // 2 + 1
+        m1 = self.helper(nums1, lo1, hi1, nums2, lo2, hi2, k1)
+        m2 = self.helper(nums1, lo1, hi1, nums2, lo2, hi2, k2)
+        return (m1 + m2) / 2
 
 
 s = Solution()
@@ -61,4 +53,3 @@ print(sorted(nums1+nums2))
 print(sorted(nums1+nums2)[k-1])
 nums1, nums2 = [1, 3], [2]
 print(s.findMedian(nums1, nums2))
-
