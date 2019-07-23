@@ -15,7 +15,7 @@ class Solution:
         # 在这里从后往前扫的时候，prices[i]变成了cost，之前的cost变成了sell price，所以这里变量名改成了maxSellPrice
         # 这个转变非常重要也非常妙
         maxSellPrice = prices[-1]
-        for i in range(len(prices)-2, 0, -1):
+        for i in range(len(prices)-2, -1, -1):
             secondProfit[i] = max(secondProfit[i+1], maxSellPrice - prices[i])
             maxSellPrice = max(maxSellPrice, prices[i])  
             
