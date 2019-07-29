@@ -11,4 +11,3 @@ class Solution:
         
         return self.isSymmetricHlper(left.left, right.right) and \
                self.isSymmetricHlper(left.right, right.left)
-               
