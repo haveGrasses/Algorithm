@@ -8,7 +8,11 @@ class ListNode:
 class Solution:
     """无序链表的排序常见的做法是mergesort，merge的部分其实就是21. Merge Two Sorted Lists合并两个有序链表,
     现在核心是完成sort那一部分，sort用slow，fast两个指针把head分成差不多均等的两部分，然后对这两部分再调用sortList函数，
-    最后merge，利用
+    最后merge.
+    仔细想一下这个递归逻辑，sortList自身实现排序就是靠将这个很长的数组/链表每次卡一半，直到最后卡的只剩null和一个元素
+    然后通过merge返回这个元素，退到上层，继续merge，再退到上层继续merge，... 直到退到第一次调sortList的栈中
+    执行最后一次merge，返回答案！所以mergesort的核心还是merge。。。sort就是靠merge来实现的，只不过靠sortList这个主函数
+    把每次merge传进来的两个部分都变成了上一次merge的结果，是有序的，merge只能处理两个参数都是有序的情况
     """
 
     def sortList(self, head: ListNode) -> ListNode:
