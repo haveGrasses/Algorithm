@@ -31,3 +31,23 @@ class Solution:
             dp1 = dp
         return dp1
 
+
+class Solution:
+    """ 从后往前扫 避免索引不对齐问题
+    dp[i]的含义：s[i: ]的decode个数，就是以s[i]开头到结尾的数字的decode数量
+    """
+    def numDecodings(self, s: str) -> int:
+        n = len(s)
+        if n == 0 or s[0] == 0:
+            return 0
+        dp = [0 for _ in range(n + 1)]
+        dp[n] = 1
+        dp[n - 1] = 0 if s[n - 1] == '0' else 1
+        for i in range(n - 2, -1, -1):
+            if s[i] == '0':
+                continue  # 必须跟在前一个数的后面，以当前数开头到最后的解码方式就是0，不更新
+            if 10 <= int(s[i]) * 10 + int(s[i + 1]) <= 26:
+                dp[i] = dp[i + 1] + dp[i + 2]  # 一个数和两个数都valid
+            else:
+                dp[i] = dp[i + 1]  # 仅当前一个数valid
+        return dp[0]
