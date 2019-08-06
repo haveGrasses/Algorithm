@@ -32,6 +32,44 @@ class Solution:
         return dp1
 
 
+# 0806 submit
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        n = len(s)
+        if n == 0 or s[0] == '0':
+            return 0
+        dp1, dp2 = 1, 1
+        for i in range(2, n + 1):
+            dp = 0
+            if s[i - 1] != '0':
+                dp = dp2
+            if 10 <= 10 * int(s[i - 2]) + int(s[i - 1]) <= 26:
+                dp += dp1
+            dp1 = dp2
+            dp2 = dp
+        return dp2
+
+
+# 0806 submit:
+class Solution:
+    """ back to forth"""
+    def numDecodings(self, s: str) -> int:
+        n = len(s)
+        if n == 0 or s[0] == '0':
+            return 0
+        dp1 = 1
+        dp2 = 1 if s[n - 1] != '0' else 0
+        for i in range(n - 2, -1, -1):
+            dp = 0
+            if s[i] != '0':
+                dp = dp2
+            if 10 <= 10 * int(s[i]) + int(s[i + 1]) <= 26:
+                dp += dp1
+            dp1 = dp2
+            dp2 = dp
+        return dp2
+
+
 class Solution:
     """ 从后往前扫 避免索引不对齐问题
     dp[i]的含义：s[i: ]的decode个数，就是以s[i]开头到结尾的数字的decode数量
@@ -84,9 +122,11 @@ class Solution:
         dp[n - 1] = 1
         for i in range(n - 2, -1, -1):
             dp[i] = dp[i+1]
-            if 10 <= 10*int(dp[i]) + dp[i+1] <= 25:
+            if 10 <= 10*int(s[i]) + int(s[i+1]) <= 25:
                 dp[i] += dp[i+2]
         return dp[0]
 
 
-print(Solution().numDecodings('12'))
+print(Solution().numDecodings('12'))  # 2
+print(Solution().numDecodings('00'))  # 1
+print(Solution().numDecodings('1000'))  # 2
