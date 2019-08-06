@@ -71,3 +71,22 @@ class Solution:
             if 10 <= int(s[i]) * 10 + int(s[i + 1]) <= 26:
                 dp[i] += dp[i+2]
         return dp[0]
+
+
+class Solution:
+    """ 做一下改编后的A-Z从0开始编码的方式 """
+    def numDecodings(self, s: str) -> int:
+        n = len(s)
+        if n == 0:
+            return 0
+        dp = [0 for _ in range(n + 1)]
+        dp[n] = 1
+        dp[n - 1] = 1
+        for i in range(n - 2, -1, -1):
+            dp[i] = dp[i+1]
+            if 10 <= 10*int(dp[i]) + dp[i+1] <= 25:
+                dp[i] += dp[i+2]
+        return dp[0]
+
+
+print(Solution().numDecodings('12'))
