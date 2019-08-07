@@ -5,8 +5,9 @@ class TreeNode:
         self.left = None
         self.right = None
 
-# 96%
+
 class Solution:
+    """96%"""
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         if p and q:
             return self.compare(p, q)
@@ -40,11 +41,23 @@ class Solution:
 
 # 一个更简介的方法：89%
 class Solution:
+    """总结一句就是：二叉树相同意味着 当前值相同，且左子树相同，且右子树相同-->这就是if条件想表达的
+    只不过套了个if，以及最后返回的是p==q算是比较妙的地方，当递归到至少一个树为空的时候就是递归的终止条件
+    所以return是在表达递归的终止条件
+    正常来说应该是
+    if not p or not q:
+        # 用 return p==q 来表达下面if-else这一串逻辑
+        if p == q:
+            return True
+        else:
+            return False
+    return p.val == q.val and \
+            self.isSameTree(p.left, q.left) and \
+            self.isSameTree(p.right, q.right)
+    """
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         if p and q:
             return p.val == q.val and \
             self.isSameTree(p.left, q.left) and \
             self.isSameTree(p.right, q.right)
         return p == q
-        
-
