@@ -44,7 +44,7 @@ class Solution:
 
     def mergeTwoLists2(self, l1, l2):
         """ non-recursive: 初始一个dummyHead，初始一个cur从dummyHead开始，当l1和l2都不为空时，用if-else确定将
-        谁加到cur的后面，加了之后相应对应链表的头，同时要后移cur到新加的节点上
+        谁加到cur的后面，加了之后后移相应对应链表的头，同时要后移cur到新加的节点上
         """
         if not l1 or not l2:
             return l1 or l2
@@ -82,7 +82,9 @@ def data():
 
 
 l1, l11 = data()
+# print('l1: ', l1.toString(), 'l2: ', l11.toString())
 print(Solution().mergeTwoLists(l1, l11).toString())
+# print('l1: ', l1.toString(), 'l2: ', l11.toString())
 # 上面这个函数会改变l1和l2的取值为：
 # 1--> 2--> 3--> 4--> 4
 # 1--> 1--> 2--> 3--> 4--> 4
