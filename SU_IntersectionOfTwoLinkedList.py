@@ -1,4 +1,5 @@
 class Solution(object):
+    """不保证对"""
     def hasCycle(self, head):
         """返回的并不是入环节点，而是在环中的一个节点（slow和fast相遇的节点），不排除恰好是入环节点的情况"""
         slow, fast = head, head
@@ -12,6 +13,9 @@ class Solution(object):
     def FirstIntersectNode(self, headA, headB):
         """关于如何定义交点在环内的第一个节点的：https://www.nowcoder.com/questionTerminal/db55f7f21127403cb268ffad9d23af37
         ：返回任意一个入环节点即可。
+        首先找到来个链表的环中节点，兼容无环链表（环中节点为None），然后判断两个环是不是一个环，
+        使用快慢指针判断在fast遇到slow之前是否遇到posB
+        若不是同一个环返回None，若是同一个环，以任意一个pos为终点求两个五环链表相遇de第一个节点
         """
         posA, posB = self.hasCycle(headA), self.hasCycle(headB)
         if posA and posB:
