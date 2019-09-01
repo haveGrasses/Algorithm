@@ -75,6 +75,16 @@ while fast != posA and (fast != posB or fast.next != posB):  # and后面这个�
 if fast != posB and fast.next != posB:
     return None
 """
+"""
+fast = posA
+while True:
+    fast = fast.next.next
+    posA = posA.next
+    if fast == posA or fast == posB or fast.next == posB:
+        break
+if fast != posB or fast.next != posB:
+    return None
+"""
 # 注2：已经确定两个环是一样的环，现在要确定交点出现在环之前还是在环内，如果在环内，随便返回一个如环节点即可，注意是如环节点，
 # 我们找到的posA和posB都不一定是如环节点，而是环中两指针相遇的节点
 
