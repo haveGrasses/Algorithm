@@ -1,9 +1,10 @@
 """ dfs，该节点为空则返回0，否则分别计算左右的maxdepth，取较大的+1 """
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:

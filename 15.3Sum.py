@@ -22,11 +22,14 @@ class Solution:
                         l += 1
                     while l < r and nums[r] == nums[r + 1]:
                         r -= 1
-                elif nums[l] + nums[r] > residual:
+                elif nums[l] + nums[r] > residual:  # 注1
                     r -= 1
                 else:
                     l += 1
         return res
+
+
+# 注1：为什么单独更新l和r的时候就不用去重了：因为上一次的值根本没被记录，如果这次和上次一样的值，但是另一个pointer会变，所以还是要保留
 
 
 class Solution:

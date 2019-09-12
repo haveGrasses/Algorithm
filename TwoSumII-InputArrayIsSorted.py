@@ -14,7 +14,7 @@ class Solution2:
     """ use two pointers """
     def twoSum(self, numbers: 'List[int]', target: 'int') -> 'List[int]':
         lo, hi = 0, len(numbers) - 1
-        while (lo < hi):  # while condiation differ from above solution
+        while (lo < hi):  # while condition differ from above solution
             tmp = numbers[lo] + numbers[hi]
             if tmp == target:
                 return [lo+1, hi+1]
@@ -51,5 +51,5 @@ class Solution4:
                 else:
                     lo = mid + 1
 
-solution = Solution()
-print(solution.twoSum([2,7,11,15], 9))
+
+print(Solution().twoSum([2,7,11,15], 9))
