@@ -18,7 +18,10 @@ class Solution:
 
 
 # 看一下最原始的暴力解法，结果当然是LTE，但是有必要对比想一下是如何优化为dp的思路的：
+# 没有必要让每个点都成为买入点，只需要记录该点之前的最优的买入点就行，因此引入cost，这样就消去了外层的while
+# 只需要循环prices，找最佳的卖出点就行
 class Solution1:
+    """轮流让每个点成为买入点，依次计算该点之后的每个点买入的profit"""
     def maxProfit(self, prices: List[int]) -> int:
         res = 0
         buy = 0
