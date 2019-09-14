@@ -5,8 +5,30 @@ class TreeNode:
         self.right = None
 
 
+# SU_PathFromRootToOneNode1
+class Solution1:
+    """ 从目标节点到根节点的路径 """
+    def binaryTreePaths(self, root, p, path):
+        found = False
+        if not root:  # 两个base condition
+            return False
+        if root.val == p:
+            path.append(root.val)
+            return True
+        if root.left:
+            found = self.binaryTreePaths(root.left, p, path)
+            if found:
+                path.append(root.val)
+        if not found and root.right:
+            found = self.binaryTreePaths(root.right, p, path)
+            if found:
+                path.append(root.val)
+        return found
+
+
 # SU_PathFromRootToOneNode
 class Solution2:
+    """ 从根节点到目标节点的路径 """
     def binaryTreePaths(self, root, p, path):
         found = False
         if not root:  # 两个base condition
@@ -56,3 +78,7 @@ root = construct_tree([9, 6, 15, 2, -1, 12, 25, -1, -1, -1, -1, -1, -1, 20, 37])
 path = []
 Solution2().binaryTreePaths(root, 20, path)
 print(path)  # [9, 15, 25, 20]
+
+path = []
+Solution1().binaryTreePaths(root, 20, path)
+print(path)  # [20, 25, 15, 9]
