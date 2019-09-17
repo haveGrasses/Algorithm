@@ -15,4 +15,3 @@ arr = [3, 9, 28, 67, 12, 45]
 arr.sort()
 print(arr)
 print(binary_search(arr, 12))
-
