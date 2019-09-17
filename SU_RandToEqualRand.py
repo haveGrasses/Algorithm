@@ -1,13 +1,3 @@
-"""
-int Coin()  {
-    while(true)  {
-        int a = foo();
-        if(a != foo()) {
-            return a;
-        }
-    }
-}
-"""
 import random
 
 
