@@ -10,7 +10,7 @@ class Solution:
         return dp[-1]
 
     def jumpFloorII2(self, number):
-        """ 我jio得，还是上面那个解法好 看看就行 """
+        """ 我jio得，还是上面那个解法好，这个看看就行 """
         dp = [1 for _ in range(number)]  # dp全初始化为1是想表达什么，可能是把从0台阶跳上来的那一步揉进来了吧，这样就不用每次循环的时候加一个dp[0]对应的1，所以dp也可以少写1个长度
         for i in range(1, number):
             for j in range(i):
