@@ -1,3 +1,13 @@
+"""
+int Coin()  {
+    while(true)  {
+        int a = foo();
+        if(a != foo()) {
+            return a;
+        }
+    }
+}
+"""
 import random
 
 
@@ -22,7 +32,8 @@ def RandToEqualRand0(p):
         return 0
 
 
-def RandToEqualRand(p):
+def RandToEqualRand1(p):
+    """ 实际上这也不是最优的 """
     a = rand(p)
     b = rand(p)
     if a == 1 and b == 0:
@@ -30,7 +41,17 @@ def RandToEqualRand(p):
     elif a == 0 and b == 1:
         return 0
     else:  # 当 a == b 时会重新调用该函数，直到满足上面条件之一返回，比while简洁很多
-        return RandToEqualRand(p)
+        return RandToEqualRand1(p)
+
+
+def RandToEqualRand(p):
+    """ preferred，没有必要再写一个if来看a和b是谁等于1，谁等于0，这两种情况等概率，随便挑一个return 1，另一个return 0就行
+    所以这里选的是a是1就return 1，a是0就return 0，刚好用a这个变量把return的变化也表示出来了！妙～
+    """
+    while True:
+        a = rand(p)
+        if a != rand(p):
+            return a
 
 
 r1 = [rand(0.6) for _ in range(10000)]
