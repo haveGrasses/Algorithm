@@ -33,5 +33,5 @@ class Solution:
         return 1*2**(number-1)
 
 
-print(Solution().jumpFloorII(2))
+print(Solution().jumpFloorII(2))  # 没有0的输入
 print(Solution().jumpFloorII2(2))
