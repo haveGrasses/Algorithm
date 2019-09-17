@@ -12,6 +12,7 @@ class Solution:
         if number <= 1:  # 这个去掉也行，因为0返回的值是0还是1都无所谓了
             return number
         dp1, dp2 = 1, 1  # 和Fibonacci数列不同的地方是跳0级台阶也有1种方法，他这个每次输出的数都和Fibonacci不同，只不过是Fibonacci的递推形式
+        # 很多fibonacci的变体中，dp1, dp2 都设置成 1, 1，比如跳台阶问题，矩形覆盖问题
         for i in range(2, number + 1):
             dp1, dp2 = dp2, dp1 + dp2
         return dp2
