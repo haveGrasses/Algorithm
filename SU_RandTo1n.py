@@ -18,6 +18,7 @@ def RandToEqualRand(p):
 
 
 def calc_k(n):
+    """ k = np.floor(log2 k) + 1 """
     k = 1
     while 2 ** k <= n:
         k += 1
