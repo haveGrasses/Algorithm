@@ -19,7 +19,7 @@ class Solution1:
             found = self.binaryTreePaths(root.left, p, path)
             if found:
                 path.append(root.val)
-        if not found and root.right:
+        if not found and root.right:  # 左边没找到才会去右边找
             found = self.binaryTreePaths(root.right, p, path)
             if found:
                 path.append(root.val)

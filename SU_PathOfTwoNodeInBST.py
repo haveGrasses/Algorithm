@@ -86,7 +86,7 @@ class Solution2:
 
 
 class Solution3:
-    """ 调两次函数，之后找公共祖先，再重组 """
+    """ 调两次从根节点到目标节点的路径函数，之后找公共祖先，再重组 """
     def binaryTreePath(self, root, p, path):
         """ 从叶子节点到跟节点的路径 """
         found = False
@@ -161,6 +161,44 @@ class Solution3:
         return path
 
 
+class Solution4:
+    """ 先找公共祖先，然后从祖先向下提取路径，走的长度会短一些，但是找祖先的过程有个dfs遍历，求路径又有两个dfs，未必比上面好 """
+
+    def lca(self, root, p, q):
+        """ 这里p和q是节点值，不是node类型 """
+        if not root or root.val == p or root.val == q:
+            return root
+        left = self.lca(root.left, p, q)
+        right = self.lca(root.right, p, q)
+        if left and right:
+            return root
+        return left if left else right
+
+    def findPath(self, root, p, path):
+        found = False
+        if not root:
+            return found
+        path.append(root.val)
+        if root.val == p:
+            # found = True
+            return found
+        if root.left:
+            found = self.findPath(root.left, p, path)
+        if not found and root.right:
+            found = self.findPath(root.right, p, path)
+        if not found:
+            path.pop()
+        return found  # 注意这里一定要return回去，不然如果在左边找到了，上层函数才能找到found的值，不然上层found接住的是个None
+
+
+    def nodeToNodePath(self, root, p, q):
+        ancestor = self.lca(root, p, q)
+        path1, path2 = [], []
+        self.findPath(ancestor, p, path1)
+        self.findPath(ancestor, q, path2)
+        return path1[::-1][:-1] + path2
+
+
 # SU_ConstructBinaryTreefromLevelorderTraversal
 def construct_tree(nums):
     root = TreeNode(nums.pop(0))
@@ -215,4 +253,7 @@ print(path)
 # print(path)
 
 path = Solution3().nodeToNodePath(root, 12, 20)
+print(path)
+
+path = Solution4().nodeToNodePath(root, 12, 20)
 print(path)
