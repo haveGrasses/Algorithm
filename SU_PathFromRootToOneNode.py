@@ -42,7 +42,7 @@ class Solution2:
             found = self.binaryTreePaths(root.right, p, path)
         if not found:
             path.pop()
-        return found
+        return found  # 注意这里一定要return回去，上层函数才能找到found的值，不然上层found接住的是个None
 
 
 # SU_ConstructBinaryTreefromLevelorderTraversal

@@ -188,7 +188,7 @@ class Solution4:
             found = self.findPath(root.right, p, path)
         if not found:
             path.pop()
-        return found  # 注意这里一定要return回去，不然如果在左边找到了，上层函数才能找到found的值，不然上层found接住的是个None
+        return found  # 注意这里一定要return回去，上层函数才能找到found的值，不然上层found接住的是个None
 
 
     def nodeToNodePath(self, root, p, q):
