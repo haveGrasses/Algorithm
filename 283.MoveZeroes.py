@@ -1,5 +1,7 @@
 class Solution:
-    """ 记录下一个不为0的元素插入的位置即可，剩下的位置填0 """
+    """ 记录下一个不为0的元素插入的位置即可，剩下的位置填0
+    这种用指针记录下一个插入位置的方法类似于26 RemoveDuplicatesfromSortedArray
+    """
     def moveZeroes(self, nums) -> None:
         """
         Do not return anything, modify nums in-place instead.
