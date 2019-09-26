@@ -27,4 +27,5 @@ class Solution(object):
                 lo = mid + 1
         return nums[hi]
 
+
 print(Solution().findMin([3,4,5,1,2]))
