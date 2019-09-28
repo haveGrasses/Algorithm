@@ -30,7 +30,7 @@ class Solution:
     def dfs(self, nums, index, path, res):
         res.append(path.copy())
         for i in range(index, len(nums)):
-            if i > index and nums[i] == nums[i - 1]:
+            if i > index and nums[i] == nums[i - 1]:  # 注意这里是i > index 而不是 i > 0，之前写 i > 0 会漏掉很多结果，因为和之前的重复不算重复
                 continue
             path.append(nums[i])
             self.dfs(nums, i + 1, path, res)
