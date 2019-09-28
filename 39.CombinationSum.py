@@ -35,10 +35,9 @@ class Solution:
     def dfs(self, nums, index, path, res, target):
         if target == 0:  # 思路其实是一样的，就是不用再算sum了
             res.append(path.copy())
-        if target < 0:
-            return
+
         for i in range(index, len(nums)):
-            if target < nums[i]:  # 加这个判断，效率翻倍
+            if target < nums[i]:  # 加这个判断，效率翻倍，外面也不用在判断target是否小于0了
                 continue
             path.append(nums[i])
             self.dfs(nums, i, path, res, target - nums[i])
