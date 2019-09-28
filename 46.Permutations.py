@@ -38,7 +38,7 @@ class Solution2:
             if not used[i]:
                 path.append(nums[i])
                 used[i] = 1
-                self.combination(nums, index + 1, path, used, res)
+                self.combination(nums, index + 1, path, used, res)  # 此处可一窥回溯之逻辑，上下对称，上面做的操作在下面撤销
                 used[i] = 0
                 path.pop()
         return
