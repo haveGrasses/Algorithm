@@ -19,7 +19,7 @@ class Solution:
         for i in range(index, len(s)):
             if not self.isValid(s, index, i):  # 注意这里的边界确定
                 continue
-            path.append(s[index: i + 1])
+            path.append(s[index: i + 1])  # 平常的append只是apeend一个数，现在是append一段string，需要注意这的string的边界
             self.dfs(s, i + 1, path, res)
             path.pop()
 
