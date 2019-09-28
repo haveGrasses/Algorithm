@@ -35,8 +35,7 @@ class Solution:
             res.append(path.copy())
             return
         for i in range(index, len(nums)):
-            if target < nums[i] or (i > index and nums[i] == nums[i - 1]):  # 再次出现容易犯的错误：是 i > index 而不是 i > 0
-                # 之前每发现这个错误还多去使用了个used, 实际上不用
+            if target < nums[i] or (i > index and nums[i] == nums[i - 1]):  # 再次出现容易犯的错误：是 i > index 而不是 i > 0，之前没发现这个错误还多去使用了个used, 实际上不用
                 continue
             path.append(nums[i])
             self.dfs(nums, i + 1, path, res, target - nums[i])
@@ -44,3 +43,5 @@ class Solution:
 
 
 # 总结一下，好像只有permutations里面会使用used，subset和combinationSum的题都不用
+# 之所以限制成i > index是：从index之后判断是否重复，如果index位置和上一个值重复也没关系，因为重复的数是上一个数的子结构，而不是并列的选择
+# 如果index之后有重复，就是并列的重复，只要选择一个就行，例如 [10,1,2,7,6,1,5]--> [1,1,2,5,6,7,10],其中[1,1,6]是正确的答案
