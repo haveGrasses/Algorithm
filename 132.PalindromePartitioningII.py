@@ -21,6 +21,7 @@ class Solution:
     dp[i]: min cut for s[i:]
     transformation:
         if valid[i][j]: dp[i] = min(dp[i], 1+dp[j+1])  # 注意处理j+1越界的情况，此时dp[i]应为0
+    这个dp的难点是valid和dp是同时维护的，if 条件中其实想表达的是 if valid[i][j]，但是此时valid[i][j]还没有更新，所以要先更新
     """
     def minCut(self, s: str) -> int:
         valid = [[0 for _ in range(len(s))] for _ in range(len(s))]
@@ -28,7 +29,7 @@ class Solution:
         for i in range(len(s)-1, -1, -1):  # 这里是从后向前扫，也有从前向后的做法
             for j in range(i, len(s)):
                 if s[i] == s[j] and (j - i < 2 or valid[i+1][j-1]):  # 注意在dp下是如何判断s[i..j]是否是回文的，一点点往外扩，只需要看上一次[i+1][j-1]位置是否为True
-                    valid[i][j] = 1
+                    valid[i][j] = 1  # 先更新valid
                     if j == len(s) - 1:
                         dp[i] = 0
                     else:
