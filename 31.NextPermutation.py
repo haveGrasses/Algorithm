@@ -12,6 +12,7 @@ class Solution:
         while index > 0 and nums[index] <= nums[index - 1]:
             index -= 1
         index -= 1
+        # 交换
         if index != -1:
             pos = None
             delta = float('inf')
@@ -20,7 +21,7 @@ class Solution:
                     delta = nums[i] - nums[index]
                     pos = i
             nums[index], nums[pos] = nums[pos], nums[index]
-
+        # 反序
         start, end = index + 1, len(nums) - 1
         while start < end:
             nums[start], nums[end] = nums[end], nums[start]
