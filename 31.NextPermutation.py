@@ -1,4 +1,4 @@
-class Solution:
+class Solution0:
     def nextPermutation(self, nums) -> None:
         """
         half bms, 题意就是找到离nums最近的比它大的数（最小的最大数），
@@ -21,6 +21,29 @@ class Solution:
                     delta = nums[i] - nums[index]
                     pos = i
             nums[index], nums[pos] = nums[pos], nums[index]
+
+        # 反序
+        start, end = index + 1, len(nums) - 1
+        while start < end:
+            nums[start], nums[end] = nums[end], nums[start]
+            start += 1
+            end -= 1
+
+
+class Solution:
+    def nextPermutation(self, nums) -> None:
+        # 有个方法，在需要某个位置索引的时候，条件按照该索引的位置来写，就不用找到了某个位置还要做一下加减之类的才能得到想要的索引
+        # Solution0还有个问题就是在找最小的大于某数的位置的时候用的是delta，但是完全没必要，因为数据是有序的，从最小的开始找到的第一个大的就是了
+
+        index = len(nums) - 2
+        while index > -1 and nums[index] >= nums[index + 1]:
+            index -= 1
+        # 交换
+        if index != -1:
+            for i in range(len(nums)-1, -1, -1):
+                if nums[i] > nums[index]:
+                    nums[index], nums[i] = nums[i], nums[index]
+                    break
         # 反序
         start, end = index + 1, len(nums) - 1
         while start < end:
