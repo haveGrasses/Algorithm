@@ -19,15 +19,15 @@ class Solution:
         """ 不移动头节点的方法：
         prev：记录下一次要指向的节点
         cur：当前节点
-        post：当前节点的下一个节点，因为当前节点需要指向prev，会丢失下一个节点，所以需要记录
+        nxt：当前节点的下一个节点，因为当前节点需要指向prev，会丢失下一个节点，所以需要记录
         """
         prev = None
         cur = head
         while cur:
-            post = cur.next
+            nxt = cur.next
             cur.next = prev
             prev = cur
-            cur = post
+            cur = nxt
         return prev
 
     def reverseList(self, head: ListNode) -> ListNode:
