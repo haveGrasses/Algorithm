@@ -5,13 +5,13 @@ class ListNode:
         self.next = None
 
 class Solution:
-    """ half bms """
+    """ half bms, memo里有解释 """
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
         if k < 2 or not head or not head.next:
             return head
         count = 0
         cur = head
-        while cur:
+        while cur and count < k:  # 看接下来是否够k个node
             cur = cur.next
             count += 1
         if count < k:
@@ -19,7 +19,7 @@ class Solution:
 
         prev, nxt = self.reverse(head, k)
         post = self.reverseKGroup(nxt, k)
-        head.next = post
+        head.next = post  # 上两步可以合成 head.next = self.reverseKGroup(nxt, k)
         return prev
 
     def reverse(self, head, k):
