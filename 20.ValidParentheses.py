@@ -16,7 +16,7 @@ class Solution:
 
 
 class Solution2:
-	"""只考虑opener，push opener对应的closer而不是opener，简化判断条件"""
+    """只考虑opener，push opener对应的closer而不是opener，简化判断条件"""
     def isValid(self, s):
         stack = []  # using list as a stack
         for i in s:
@@ -33,7 +33,7 @@ class Solution2:
 
 
 class Solution3:
-	""" Solution2将opener的每种情况进行if判断，当opener较多的时候有些冗长，可借助字典记录配对情况"""
+    """ Solution2将opener的每种情况进行if判断，当opener较多的时候有些冗长，可借助字典记录配对情况"""
     def isValid(self, s):
         stack = []  # using list as a stack
         pair_dict = {'(': ')', '[': ']', '{': '}'}
