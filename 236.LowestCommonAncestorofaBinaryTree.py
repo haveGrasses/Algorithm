@@ -16,7 +16,7 @@ class Solution:
         思路：
         看当前节点是否满足条件，满足则return，为空也return，不再去看左右子树了
         否则先后得到左子树和右子树的返回结果
-        如果两个都不为空则返回当前节点，谋则返回不为空的那个，都为空时返回空
+        如果两个都不为空则返回当前节点，则返回不为空的那个，都为空时返回空
 
         """
         # 每次return的要么是自己子树中找到的给定节点，要么就是最近公共节点，如果有一次return的是公共节点，则继续往上的过程中return
@@ -28,7 +28,11 @@ class Solution:
 
         if left and right:
             return root
-        return left if left else right
+        return left if left else right  # 这其实就是返回二者不为空的那一个，都为空则返回空，很妙的写法
+
+
+# 注意要测试的话，建树的时候每个节点请单独初始化再指针相连，不然一起建出来后，某个节点值如果是3，这个节点是不等于TreeNode(3)的
+# 因为左右孩子指向不一样，就算是叶子节点没有左右孩子的时候也不想等
 
 
 class Solution2:

@@ -10,7 +10,7 @@ def rand():
 
 def calc_k(n):
     k = 1
-    while not 2 ** k >= n:  # k = log2(n)：n的二进制位数
+    while not 2 ** k > n:
         k += 1
     return k
 
@@ -31,7 +31,7 @@ def EqualRandToRand():
     # 3 * 1 ~ 3 * 9 共9个能被3整除，返回0
     # 剩余30 - 9 = 21个不能被整除，返回1
     #  比例为9: 21 = 3:7
-    if a != 0:
+    if a != 0:  # 注意这个不等于0的情况，0%3=0，但0属于输出1的那一波
         if a % 3 == 0:
             return 0
     return 1

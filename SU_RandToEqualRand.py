@@ -2,7 +2,7 @@ import random
 
 
 def rand(p):
-    """ 构造一个不等概率的0-1产生器，以概率p产生1，概率1-p产生0 """
+    """ 构造一个不等概率的0-1产生器，以概率p产生1，概率1-p产生0，可以理解为抛硬币的结果 """
     return 1 if random.random() > (1-p) else 0
 
 
